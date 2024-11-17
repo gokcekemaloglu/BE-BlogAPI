@@ -22,7 +22,7 @@ app.all("/", (req, res)=>{
     res.send("WELCOME!! :)")
 })
 
-
+app.use("/blog", require("./src/routes/blog"))
 
 
 /* ----------------------------------- */
