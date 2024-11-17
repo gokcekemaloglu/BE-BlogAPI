@@ -66,8 +66,7 @@ module.exports.blogPost = {
         })
     },
     read: async (req, res) => {
-        // console.log(req.params)
-        
+ 
         const result = await BlogPost.findById(req.params.postId)
         res.status(200).send({
             error: false,
@@ -75,11 +74,7 @@ module.exports.blogPost = {
         })
     },
     update: async (req, res) => {
-        // console.log(req.params);
-        // console.log(req.body);
-
-        // const {postId} = req.params 
-        
+                
         const result = await BlogPost.findByIdAndUpdate(req.params.postId, req.body, { new: true })
         res.status(202).send({
             error: false,
