@@ -34,10 +34,10 @@ module.exports = {
         })
     },
     delete: async (req, res) => {
-        console.log(req.params);
+        // console.log(req.params);
         // console.log(req.body);
         const {deletedCount} = await User.deleteOne({_id: req.params.userId})
         if (deletedCount) res.sendStatus(204)
-        else throw new Error("Something went wrong!")        
+        else throw new Error("Something went wrong!")
     },
 }
