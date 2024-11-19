@@ -26,6 +26,8 @@ module.exports = {
         })
     },
     update: async (req, res) => {
+        console.log(req.params);
+        // const {userId} = req.params
                 
         const result = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
         res.status(202).send({
@@ -33,7 +35,7 @@ module.exports = {
             result
         })
     },
-    delete: async (req, res) => {
+    deleteUser: async (req, res) => {
         // console.log(req.params);
         // console.log(req.body);
         const {deletedCount} = await User.deleteOne({_id: req.params.userId})

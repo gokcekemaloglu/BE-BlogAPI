@@ -4,7 +4,7 @@ const router = require("express").Router()
 /* --------------------------------------------- */
 
 // Controller
-const {list, create, read, update, delete: deleteUser} = require("../controllers/user")
+const {list, create, read, update, deleteUser} = require("../controllers/user")
 
 // Routes
 
