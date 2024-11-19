@@ -11,6 +11,14 @@ app.use(express.json()) // ???
 require('express-async-errors') // ??
 /* ----------------------------------- */
 
+// Cookie-Session
+const session = require("cookie-session")
+app.use(session({
+    secret: process.env.SECRET_KEY
+}))
+
+/* ----------------------------------- */
+
 // DB connection
 require("./src/configs/dbConnection")
 /* ----------------------------------- */
@@ -19,7 +27,11 @@ require("./src/configs/dbConnection")
 
 // Routes
 app.all("/", (req, res)=>{
-    res.send("WELCOME!! :)")
+    res.send({
+        message: "WELCOME!! :)",
+        session: req.session,
+    })
+    
 })
 
 app.use("/blog", require("./src/routes/blog"))
