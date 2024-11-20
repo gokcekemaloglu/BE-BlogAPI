@@ -18,6 +18,8 @@ app.use(session({
 }))
 
 /* ----------------------------------- */
+app.use(require("./src/middlewares/authentication"))
+/* ----------------------------------- */
 
 // DB connection
 require("./src/configs/dbConnection")
@@ -30,6 +32,7 @@ app.all("/", (req, res)=>{
     res.send({
         message: "WELCOME!! :)",
         session: req.session,
+        isLogin: req.session ? true : false
     })
     
 })

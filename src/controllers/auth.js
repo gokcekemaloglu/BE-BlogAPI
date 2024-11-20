@@ -11,9 +11,17 @@ module.exports = {
             const user = await User.findOne({email})
             if (user) {
                 if (user.password === passwordEncrypt(password)) {
+                    // Session
+                    req.session._id = user._id
+                    req.session.password = user.password
+                    // Cookie
+                    if (req.body.rememberMe == true) { //?????????
+                        req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 2
+                    }
                     res.send({
                         error: false,
                         message: "Login Successfull",
+                        user
                     })
                 } else {
                     res.errorStatusCode = 401
@@ -29,9 +37,10 @@ module.exports = {
         }
     },
     logout: async( req, res) => {
-        res.send({
+        req.session = null
+        res.status(200).send({
             error: false,
-            message: "Login Successfull",
+            message: "Logout Successfull"
         })
     },
 }
