@@ -18,10 +18,11 @@ app.use(session({
 }))
 
 /* ----------------------------------- */
+// Authentication
 app.use(require("./src/middlewares/authentication"))
 /* ----------------------------------- */
 // Query Handler
-
+app.use(require("./src/middlewares/queryHandler"))
 
 /* ----------------------------------- */
 

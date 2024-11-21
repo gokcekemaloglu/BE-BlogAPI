@@ -52,26 +52,12 @@ module.exports.blogCategory = {
 
 module.exports.blogPost = {
     list: async (req, res) => {
-        /* ------------------------------------------------------- */
-
-        // FILTERING &  SEARCHING & SORTING & PAGINATION
-
-        // Filtering:
-        // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
-        const filter = req.query?.filter || {}
-        console.log(req.query);
-
         
-
-        const result = await BlogPost.find({...filter})
-
-        // SELECT & POPULATE:
-        // const result = await BlogPost.find({...search-filter},{...select})
-        // const result = await BlogPost.find({}, { categoryId: true, title: true, content: true, _id: false }).populate('categoryId') // default --> _id : true
-
+        const result = await res.getModelList(BlogPost)
 
         res.status(200).send({
             error: false,
+            details: await res.getModelListDetails(BlogPost),
             result
         })
     },
@@ -101,7 +87,7 @@ module.exports.blogPost = {
     delete: async (req, res) => {
         // console.log(req.params);
         // console.log(req.body);
-        const {deletedCount} = await BlogPost.deleteOne({_id: req.params.postId}) // ????????????
+        const {deletedCount} = await BlogPost.deleteOne({_id: req.params.postId})
         if (deletedCount) res.sendStatus(204)
         else throw new Error("Something went wrong!")        
     },
