@@ -20,6 +20,11 @@ const BlogPostSchema = new Schema({
         ref: "BlogCategory",
         required: true
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     title: {
         type: String,
         required: true,
@@ -27,8 +32,12 @@ const BlogPostSchema = new Schema({
     },
     content: {
         type: String,
-        required: true,
+        required: [true, 'Content is required!'],
         trim: true
+    },
+    published: {
+        type: Boolean,
+        default: true
     }
 },{
     collection: 'BlogPost',
