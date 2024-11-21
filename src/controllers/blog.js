@@ -53,7 +53,7 @@ module.exports.blogCategory = {
 module.exports.blogPost = {
     list: async (req, res) => {
         
-        const result = await res.getModelList(BlogPost)
+        const result = await res.getModelList(BlogPost, "categoryId") //???
 
         res.status(200).send({
             error: false,
